@@ -1,0 +1,19 @@
+<div class="jumbotron">
+  <h1>Welcome to AU Manager</h1>
+  <p class="lead">This is the administrative ERP for <a href="http://americasuniversity.net/" target="_blank">Americas University</a>.</p>
+  <div *ngIf="authService.authenticated; then welcomeUser else signInPrompt"></div>
+  <ng-template #welcomeUser>
+    <p *ngIf="authService.user">You're accessing as <strong>{{ authService.user.displayName }}</strong>. If you're not {{ authService.user.displayName }}, please, <a href="javascript:undefined" role="link" (click)="signOut()">click here</a>.</p>
+  </ng-template>
+  <ng-template #signInPrompt>
+    <a href="javascript:undefined" class="btn btn-primary btn-large" role="button" (click)="signIn()">
+      Click here to sign in
+    </a>
+    <p style="margin-top: 50px;">
+      OR
+    </p>
+    <p>
+      If you're new and need to gain access, give a click <a href="javascript:undefined" role="link" (click)="requestAccess()">here</a>.
+    </p>
+  </ng-template>
+</div>
